@@ -1,0 +1,34 @@
+import {createSlice} from "@reduxjs/toolkit";
+import type {RootState} from "../../Store/reduxStore.tsx";
+
+
+interface themeInterface {
+    isDark: boolean;
+}
+
+
+const initialState: themeInterface = {
+    isDark: false,
+}
+
+
+const darkLightThemeSlice = createSlice({
+    name: "darkLightTheme",
+    initialState,
+    reducers: {
+        toggleDarkLightTheme: (state) => {
+            state.isDark = !state.isDark;
+        }
+    }
+})
+
+
+export const selectTheme = (state: RootState) => {
+    return state.darkLightTheme.isDark;
+};
+
+
+export const {toggleDarkLightTheme} = darkLightThemeSlice.actions;
+
+
+export default darkLightThemeSlice.reducer;
